@@ -23,6 +23,7 @@
     
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         // IIFE: Immediate Invoke Function Expression
         (function() {
@@ -39,6 +40,24 @@
                             description: 'Descripción de pruebas #2'
                         }
                     ]
+                },
+                mounted: function() {
+                    var serverURL = 'http://';
+                    var _this = this;
+                    var configAxios = {
+                        url: serverURL,
+                        method: 'get',
+                        responseType: 'json',
+                        data: {},
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Api-Token': ''
+                        }
+                    };
+
+                    axios.request(configAxios).then(function(response){
+                        console.log(response);
+                    });
                 }
             });
         })();
