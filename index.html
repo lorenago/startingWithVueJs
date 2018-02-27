@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.js demo</title>
+</head>
+<body>
+    
+    <div id="app">
+        {{ message }}
+        <div class="b-project" v-for="project in projects">
+            {{ project.title }}
+            <hr>
+            {{ project.description }}
+        </div>
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        // IIFE: Immediate Invoke Function Expression
+        (function() {
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    message: 'Hello world',
+                    projects: [
+                        {
+                            title: 'Trabajando con Vue.js',
+                            description: 'Descripción de pruebas'
+                        }, {
+                            title: 'Trabajando con Vue.js #2',
+                            description: 'Descripción de pruebas #2'
+                        }
+                    ]
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
