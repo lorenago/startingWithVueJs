@@ -1,0 +1,38 @@
+body {
+    color: rgb(3,79,104);
+    background-color: #eee;
+}
+
+body h2 {
+    margin: 15px;
+    text-align: center;
+}
+
+.card {
+    border: solid 1.5px rgb(11,139,181);
+    color: rgb(30,30,30);
+}
+.in-progress {
+    background-color: rgb(182,237,255);
+}
+
+.in-progress .status {
+    color: rgb(12,61,181);
+}
+
+.pending {
+    background-color: white;
+}
+
+.pending .status {
+    color: rgb(11,139,181);
+}
+
+.finished {
+    background-color: rgb(225,225,225);
+    border-color: #aaa;
+}
+
+.finished .status {
+    color: rgb(181,97,11);
+}

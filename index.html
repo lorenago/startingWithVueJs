@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vue.js demo</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles.css">
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
 </head>
 <body>
@@ -49,21 +50,20 @@
                    @click="saveCurso(newCurso)">
             </div>
             
-            <h4>Cursos de programación: </h4>
+            <h2>Cursos de programación: </h4>
             <div class="b-project" v-for="curso in cursos">
-                <div class="card mb-3 text-center" style="padding: 15px;" v-bind:class="getClass(curso)">
+                <div class="card mb-3 text-center" style="padding: 15px;" :class="getClass(curso)">
                     <div class="card-block">
                         <h6> Title: {{ curso.title }}</h6>
                         <p> Title: {{ curso.subtitle }}</p>
                         <div class="d-flex justify-content-around">
                             <div>Fecha de inicio: {{curso.initDate}}</div>
                             <div>Fecha de fin: {{curso.endDate}}</div>
+                            <em class="status">Estado: {{curso.status}}</em>
                         </div>
                     </div>
                 </div>
-                <hr>
             </div>
-            
         </div>
     </div>
     
@@ -80,37 +80,44 @@
                     cursos: [
                         {
                             title: 'Angular 2: Crea webapps desde cero',
-                            subtitle: 'Aprende a desarrollar aplicaciones web modernas de forma práctica y desde cero con Angular 2, el sucesor de AngularJS', 
+                            subtitle: 'Aprende a desarrollar aplicaciones web modernas de forma práctica y desde cero con Angular 2, el sucesor de AngularJS',
+                            status: 'En progreso', 
                             initDate: '01/12/2017',
                             endDate: '25/03/2018'
                         }, {
                             title: 'Laravel 5 desde cero + APIs RESTful y webs Angular',
                             subtitle: 'Aprende Laravel paso a paso, el framework PHP más popular. Desarrolla servicios REST y crea aplicaciones web con Angular',                             
+                            status: 'Terminado',
                             initDate: '03/09/2017',
                             endDate: '01/02/2018'
                         }, {
                             title: 'Desarrollo Web Completo con HTML5, CSS3, JS AJAX PHP y MySQL',
                             subtitle: 'Aprende Desarrollo Web con este curso 100% práctico, paso a paso y sin conocimientos previos, INCLUYE PROYECTO FINAL',                             
+                            status: 'Terminado',
                             initDate: '05/11/2016',
                             endDate: '09/09/2017'
                         }, {
                             title: 'Python for Beginners: Learn Python Programming (Python 3)',
                             subtitle: 'Learn Python Programming the Easy Way, Complete with Examples, Quizzes, Exercises and more. Learn Python 2 and Python 3.',                             
+                            status: 'No empezado',
                             initDate: '05/04/2018',
                             endDate: '01/01/2019'
                         }, {
                             title: 'Mejora el FRONT-END de tu Web con Polymer sin tanto código',
                             subtitle: 'Aprende este nuevo recurso de Google para crear, usar y reutilizar elementos interactivos rápido e increíblemente fácil',                             
+                            status: 'En progreso',
                             initDate: '02/01/2018',
                             endDate: '07/05/2019'
                         }, {
                             title: 'GraphQL with React: The Complete Developers Guide',
                             subtitle: 'Learn and master GraphQL by building real web apps with React and Node',                            
+                            status: 'No empezado',
                             initDate: '01/06/2018',
                             endDate: '07/03/2019'
                         }, {
                             title: 'Vue 2 - Crea webapps modernas',
                             subtitle: 'Aprende a desarrollar aplicaciones web modernas de forma práctica y desde cero con Vue JS 2, la alternativa a Angular 2',                             
+                            status: 'No empezado',
                             initDate: '01/05/2018',
                             endDate: '01/06/2018'
                         }
@@ -118,13 +125,13 @@
                 },
                 methods: {
                     saveCurso: function(curso) {
+                        this.newCurso.status = 'No empezado';
                         this.cursos.push(this.newCurso);
                         this.newCurso = {};
                         this.viewForm = false;
                     },
                     getClass: function(curso) {
-                        var date = new Date();
-                        return curso.initDate > date ? 'card-outline-primary' : 'card-outline-success';
+                        return curso.status === 'No empezado' ? 'pending' : curso.status === 'En progreso' ? 'in-progress' : 'finished';
                     },
                     createCurso: function() {
                         this.viewForm = true;
